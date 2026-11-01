@@ -37,4 +37,7 @@ public class Libro {
     public void setVecesPrestado(int vecesPrestado) {
         this.vecesPrestado = vecesPrestado;
     }
+    public int getVecesPrestado() {
+        return vecesPrestado;
+    }
 }

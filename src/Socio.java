@@ -27,11 +27,35 @@ public class Socio {
 
     public void pedirLibro ( Libro libro ){
         if ( puedePedir() == true ){
-            //biblioteca.prestar(libro)
-            
+            boolean prestamoHecho = Biblioteca.prestar(libro);
+            if ( prestamoHecho == true ){
+                librosPrestados++;
+                System.out.println("Papu prestamo hecho!!! :V");
+            }
+            System.out.println("papu, libro no disponible, salu2");
         } else {
             System.out.println("No puedes pedir más libros. Ya tienes 2.");
         }
     }
     
+    public void devolverLibr(Libro libro){
+        Biblioteca.devolver(libro);
+        if (librosPrestados >=0){
+            librosPrestados-- ;
+        }
+    }
+    
+    public void mostrarDatos(){
+        System.out.printf("Nombre: %s\nNúmero de socio: %d\nLibros prestados: %d: ", nombre, numeroSocio, librosPrestados);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public int getNumeroSocio() {
+        return numeroSocio;
+    }
+    public int getContrasenia(){
+        return  contrasenia;
+    }
 }
