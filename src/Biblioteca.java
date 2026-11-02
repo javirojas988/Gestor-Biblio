@@ -55,7 +55,17 @@ public class Biblioteca {
         } while (repetir == true);
         return respuesta;
     }
-
+    public static Libro libroMasPrestado(Libro libro, Libro libro2, Libro libro3){
+        if (libro.getVecesPrestado() >= libro2.getVecesPrestado()){
+            if( libro.getVecesPrestado() > libro3.getVecesPrestado()){
+                return libro;
+            }else return libro3;
+        }else{
+            if(libro2.getVecesPrestado()>=libro3.getVecesPrestado()){
+                return libro2;
+            }else return libro3;
+        }
+    }
     public static void main(String[] args) {
         Libro libro1 = new Libro("Extranjero", "Camus", 1967);
         Libro libro2 = new Libro("Noches Blancas", "Dovtoiseki", 1910);
@@ -111,6 +121,61 @@ public class Biblioteca {
         }else {
             System.out.println("Bienvenido "+ socioActual.getNombre());
             // menú en do while hasta que el usuario elija salir, y el 5 , 6 ,7 , 8 ,9 
+            int opcion ; 
+            int elijeLibro;
+            Libro eleccion;
+            boolean repetir = true ; 
+            while (repetir) {
+                System.out.println("----------------");
+                System.out.println("1. Ver todos los libros");
+                System.out.println("2. Pedir un libr");
+                System.out.println("3. Devolver un libro");
+                System.out.println("4. Ver mis datos de socio");
+                System.out.println("5. Salir ");
+                opcion = lecturaSegura("Elija una opción: ");
+                switch (opcion) {
+                    case 1:
+                        mostrarTodos(libro1, libro2, libro3);
+                        break;
+                    case 2:
+                        mostrarTodos(libro1, libro2, libro3);
+                        System.out.println("Que libro quieres");
+                        
+                        do {
+                            elijeLibro = lecturaSegura("");
+                        } while (elijeLibro < 1 && elijeLibro > 3 );
+
+                        eleccion = elegirLibro(elijeLibro, libro1, libro2, libro3);
+                        socioActual.pedirLibro(eleccion);
+                        break;
+                    case 3: 
+                        if ( socioActual.getLibrosPrestados() == 0 ){
+                            System.out.println("uste no tiene ningun libro pa delvolver");
+                        }else {
+                            mostrarTodos(libro1, libro2, libro3);
+                            System.out.println("Elije que libro devolver");
+                            do {
+                                elijeLibro = lecturaSegura("");
+                            } while (elijeLibro < 1 && elijeLibro > 3 );
+                            eleccion = elegirLibro(elijeLibro, libro1, libro2, libro3);
+                            devolver(eleccion);
+                        }
+                        break;
+                    case 4:
+                        socioActual.mostrarDatos();
+                        break;
+                    case 5:
+                        repetir=false;
+                        System.out.println("adios mu buena");
+                        System.out.printf("Te queda %d libros sin devolver.", socioActual.getLibrosPrestados());
+                        Libro libroGanador = libroMasPrestado(libro1, libro2, libro3);
+                        System.out.printf("El libro más prestado ha sido el %s, (%d veces)", libroGanador.getTitulo(), libroGanador.getVecesPrestado());
+                        break;
+                    default:
+                        System.out.println("Elija una opción válida");
+                        break;
+                }
+            }
         }
 
     }

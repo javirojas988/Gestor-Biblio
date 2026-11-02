@@ -30,7 +30,7 @@ public class Socio {
             boolean prestamoHecho = Biblioteca.prestar(libro);
             if ( prestamoHecho == true ){
                 librosPrestados++;
-                System.out.println("Papu prestamo hecho!!! :V");
+                System.out.println("Papu prestamo hecho!!! ya tienes: "+ libro.getTitulo());
             }
             System.out.println("papu, libro no disponible, salu2");
         } else {
@@ -57,5 +57,8 @@ public class Socio {
     }
     public int getContrasenia(){
         return  contrasenia;
+    }
+    public int getLibrosPrestados() {
+        return librosPrestados;
     }
 }
