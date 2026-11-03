@@ -31,8 +31,9 @@ public class Socio {
             if ( prestamoHecho == true ){
                 librosPrestados++;
                 System.out.println("Papu prestamo hecho!!! ya tienes: "+ libro.getTitulo());
+            } else {
+                System.out.println("papu, libro no disponible, salu2");
             }
-            System.out.println("papu, libro no disponible, salu2");
         } else {
             System.out.println("No puedes pedir más libros. Ya tienes 2.");
         }

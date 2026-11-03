@@ -139,10 +139,9 @@ public class Biblioteca {
                         break;
                     case 2:
                         mostrarTodos(libro1, libro2, libro3);
-                        System.out.println("Que libro quieres");
                         
                         do {
-                            elijeLibro = lecturaSegura("");
+                            elijeLibro = lecturaSegura("Que libro quieres");
                         } while (elijeLibro < 1 && elijeLibro > 3 );
 
                         eleccion = elegirLibro(elijeLibro, libro1, libro2, libro3);
